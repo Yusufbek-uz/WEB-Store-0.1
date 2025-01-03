@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="./img/Veranix.png">
+    <meta property="og:title" content="WEB Store">
+    <meta property="og:description" content="Welcome to WEB Store">
+    <meta property="og:image" content="https://veranix-1.github.io/Portfolio/img/Veranix.jpg">
+    <meta name="theme-color" content="#156963">
+    <link rel="stylesheet" href="./style.css">
+    <title>WEB Store</title>
+</head>
+<body>
+    <header class="container">
+        <h2 data-aos="fade-right">WEB Store</h2>
+        <div class="h-icons" data-aos="fade-up">
+            <i class="fa-solid fa-magnifying-glass" style="color: #156963;"></i>
+            <i class="fa-solid fa-basket-shopping" style="color: #156963;"></i>
+            <i class="fa-solid fa-truck" style="color: #156963;"></i>
+        </div>
+        <div class="h-sign" data-aos="fade-left">
+            <a href="./signup.html">Sign Up</a>
+            <a href="./login.html"><button>Sign</button></a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="s1" data-aos="fade-down">
+                <h1>WEB Store</h1>
+                <h2>WEB Store is a future in the Tashkent</h2>
+            </section>
+            <section class="s2 container">
+                    <div class="s2-t" data-aos="fade-right">
+                        <h1>Qulayliklar</h1>
+                        <ol type="">
+                            <li><b>Oson</b> va <b>tez</b> buyurtma beris.</li>
+                            <li><b>Tez</b> yetkazish.</li>
+                            <li><b>Hafsiz</b> va <b>Litsyenzali</b>.</li>
+                        </ol>
+                        <a href="#order-btn"><button id="order">Order</button></a>
+                    </div>
+                    <img src="./img/s2-ored.png" alt="" width="300" data-aos="fade-left">
+            </section>
+            <section class="s3 container">
+                <h1 class="s3-h1" data-aos="fade-up" id="order-btn">Products !!</h1>
+                <div class="inps">
+                    <input type="search" id="search" placeholder="Mahsulotlari qidirish ...">
+                    <input type="search" id="qoldiq" placeholder="Mahsulotlar qoldig'i ...">
+                    <input type="search" id="price" placeholder="Mahsulotlar Narxi ...">
+                </div>
+                <div id="cards">
+                    <div class="card" data-aos="flip-down">
+                        <img src="./img/product.png" alt="" width="200">
+                        <h1>Maxsulot</h1>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur voluptate error mollitia odit nam libero quia?</p>
+                        <h2>Price: <span>$ <b>77.99</b></span></h2>
+                        <button id="buy">Buy</button>
+                        <span id="qoldi" title="Qoldi">12</span>
+                    </div>
+                </div>
+            </section>
+            <section class="s4 container">
+                <div class="s4-l">
+                    <div class="s4-text" data-aos="fade-down-right">
+                        <h1>Welcome to WEB Store</h1>
+                        <p>Discover the future of shopping in Tashkent. WEB Store offers a wide range of high-quality products at the best prices. Experience convenience and reliability like never before.</p>
+                        <img src="./img/image-l.webp" alt="" width="500" height="400">
+                    </div>
+                </div>
+                <div class="s4-r">
+                    <img src="./img/s4.png" alt="" data-aos="fade-down-left">
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer data-aos="zoom-in-up">
+        <div class="container">
+            <div class="f-h1">
+                <h1>WEB Store.</h1>
+                <p>WEB Store is a future in the Tashkent</p>
+            </div>
+            <div class="contacts">
+                <h3>Contacts</h3>
+                <h4><i class="fa-solid fa-code"></i><a href="https://taplink.cc/yusufuz" target="_blank">Taplink</a></h4>
+                <h4><i class="fa-brands fa-github"></i><a href="https://github.com/Yusufbek-uz" target="_blank">GitHub</a></h4>
+                <h4><i class="fa-solid fa-briefcase"></i><a href="https://veranix-1.github.io/Portfolio/" target="_blank">Portfolio <br> Betta version</a></h4>
+            </div>
+            <div class="contacts">
+                <h3>Networks</h3>
+                <h4><i class="fa-brands fa-telegram"></i><a href="https://t.me/veranix1/" target="_blank">Telegram</a></h4>
+                <h4><i class="fa-brands fa-youtube"></i><a href="https://www.youtube.com/@yusufbek577" target="_blank">YouTube</a></h4>
+                <h4><i class="fa-brands fa-instagram"></i><a href="https://www.instagram.com/vezunchi_7777" target="_blank">Instagram</a></h4>
+            </div>
+        </div>
+    </footer>
+    <!-- <script src="./admin.js" defer></script> -->
+    <script src="./script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

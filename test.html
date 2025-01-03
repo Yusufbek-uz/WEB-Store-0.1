@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./admin.css">
+    <title>WEB Store - Admin Panel</title>
+</head>
+<body>
+    <header class="container" style="background-color: rgba(194, 192, 192, 0.596);">
+        <h2 style="color: #156963;">WEB Store</h2>
+        <div class="h-icons" style="display: flex;justify-content: space-evenly;">
+            <i class="fa-solid fa-magnifying-glass" style="color: #156963;"></i>
+            <i class="fa-solid fa-basket-shopping" style="color: #156963;"></i>
+            <i class="fa-solid fa-truck" style="color: #156963;"></i>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="admin-panel">
+                <h1>Admin Panel</h1>
+                <form id="addProductForm">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+
+                    <label for="description">Description</label>
+                    <input type="text" id="description" required>
+
+                    <label for="price">Price</label>
+                    <input type="number" id="price" required>
+
+                    <label for="stock">Stock</label>
+                    <input type="number" id="stock" required>
+
+                    <label for="image">Image URL</label>
+                    <input type="url" id="image" placeholder="https://example.com/image.jpg" required>
+
+                    <button type="submit">Add Product</button>
+                </form>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h1>WEB Store</h1>
+            <p>WEB Store is the future in Tashkent</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = "https://676a7c4f863eaa5ac0de89cf.mockapi.io/api/first/webstore";
+
+        async function fetchProducts() {
+            const response = await fetch(API_URL);
+            const products = await response.json();
+            renderProducts(products);
+        }
+
+        function renderProducts(products) {
+            const tableBody = document.getElementById("product-table-body");
+            tableBody.innerHTML = "";
+            products.forEach(product => {
+                const row = `
+                    <tr>
+                        <td>${product.id}</td>
+                        <td><img src="${product.image}" alt="${product.name}" width="50" height="50"></td>
+                        <td>${product.name}</td>
+                        <td>${product.description}</td>
+                        <td>$${product.price}</td>
+                        <td>${product.stock}</td>
+                        <td>
+                            <button class="edit-btn" onclick="editProduct(${product.id})">Edit</button>
+                            <button class="delete-btn" onclick="deleteProduct(${product.id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        async function addProduct(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const description = document.getElementById("description").value;
+            const price = parseFloat(document.getElementById("price").value);
+            const stock = parseInt(document.getElementById("stock").value);
+            const image = document.getElementById("image").value;
+
+            const newProduct = { name, description, price, stock, image };
+
+            await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newProduct),
+            });
+
+            fetchProducts();
+            document.getElementById("addProductForm").reset();
+        }
+
+        async function deleteProduct(id) {
+            await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+            fetchProducts();
+        }
+
+        async function editProduct(id) {
+            const response = await fetch(`${API_URL}/${id}`);
+            const product = await response.json();
+
+            document.getElementById("name").value = product.name;
+            document.getElementById("description").value = product.description;
+            document.getElementById("price").value = product.price;
+            document.getElementById("stock").value = product.stock;
+            document.getElementById("image").value = product.image;
+
+            await deleteProduct(id);
+        }
+
+        document.getElementById("addProductForm").addEventListener("submit", addProduct);
+
+        fetchProducts();
+    </script>
+</body>
+</html>
